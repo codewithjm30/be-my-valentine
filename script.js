@@ -21,11 +21,51 @@ const phrases = [
 let phraseIndex = 0;
 
 // --- SETUP ---
-window.onload = () => {
-    resize();
-    initParticles();
-    animate();
-};
+// Improved initialization to prevent loading issues
+let appInitialized = false;
+
+function initializeApp() {
+    if (appInitialized) return; // Prevent double initialization
+    appInitialized = true;
+    
+    try {
+        console.log('Initializing Valentine app...');
+        
+        resize();
+        initParticles();
+        animate();
+        
+        // Give the 3D heart time to render before hiding loading screen
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    if (loadingScreen.parentNode) {
+                        loadingScreen.remove();
+                    }
+                }, 500);
+            }
+            document.body.classList.add('loaded');
+            console.log('Valentine app ready!');
+        }, 2000); // 2 second delay to ensure 3D heart loads properly
+        
+    } catch (error) {
+        console.error('Failed to initialize:', error);
+        // Fallback: hide loading screen anyway
+        const loadingScreen = document.getElementById('loadingScreen');
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+        }
+    }
+}
+
+// Multiple initialization triggers to ensure it works
+document.addEventListener('DOMContentLoaded', initializeApp);
+window.addEventListener('load', initializeApp);
+
+// Fallback initialization after 3 seconds
+setTimeout(initializeApp, 3000);
 
 window.addEventListener('resize', resize);
 function resize() {
@@ -255,7 +295,13 @@ class Particle {
 
 function initParticles() {
     particles = [];
-    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+    console.log(`Creating ${PARTICLE_COUNT} particles for 3D heart...`);
+    
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push(new Particle());
+    }
+    
+    console.log(`3D heart initialized with ${particles.length} particles`);
 }
 
 // --- ANIMATION LOOP ---
