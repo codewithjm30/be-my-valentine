@@ -1,0 +1,78 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Be My Valentine?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="success-overlay" id="successScreen">
+        <h2>Happy Valentines Day Baby❤️</h2>
+      <button onclick="showMessageCard()">Us</button>  
+    </div>
+
+    <!-- Message Card -->
+    <div class="message-card-overlay" id="messageCardScreen">
+        <div class="message-card">
+            <button class="close-btn" onclick="closeMessageCard()">&times;</button>
+            
+            <div class="card-header">
+                <h3>Us Together❤️</h3>
+            </div>
+            
+            <div class="card-content">
+                <div class="photos-container">
+                    <div class="photo photo-1">
+                        <img src="us1.jpg" alt="Us Together" id="photo1">
+                        <div class="photo-placeholder">
+                            <span>📷</span>
+                            <p>Replace with<br>us1.jpg</p>
+                        </div>
+                    </div>
+                    <div class="photo photo-2">
+                        <img src="us2.jpg" alt="Our picture together" id="photo2">
+                        <div class="photo-placeholder">
+                            <span>📷</span>
+                            <p>Replace with<br>us2.jpg</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="message-content">
+                    <p class="love-message">
+                        My Dearest Love,<br><br>
+                        Every moment with you feels like a beautiful dream come true. 
+                        You are my sunshine on cloudy days, my comfort in difficult times, 
+                        and my greatest joy in life.<br><br>
+                        Thank you for being my partner, my best friend, and my forever Valentine. 
+                        I love you! ❤️<br><br>
+                        <br>
+                        <button class="play-song-btn" onclick="playOurSong()">Play our Song 🎵</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="mainUI">
+        <div class="content-wrapper">
+            <div class="title-box">
+                <h1>Will you be my Valentine?</h1>
+                
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-yes" id="yesBtn" onclick="acceptProposal()">Yes, I will!</button>
+                <button class="btn-no" id="noBtn">No</button>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="scene"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
